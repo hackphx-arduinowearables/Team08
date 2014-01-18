@@ -1,9 +1,11 @@
 #include "FastLED.h"
 
-#define NUM_LEDS 10
+#define NUM_LEDS 16
 #define DATA_PIN 3
 
 CRGB leds[NUM_LEDS];
+
+int dotLength = 500; 
 
 void setup() {
     Serial.begin(9600);
@@ -11,10 +13,36 @@ void setup() {
     
     FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
 }
-
+void ledOn(int length)
+{
+  int startTime = millis();
+  while (millis() - startTime < length)
+    {
+    for (int i = 0; i < NUM_LEDS; i++)
+    {
+        leds[i] = CRGB::Blue;
+        FastLED.show();
+        leds[i] = CRGB::Black;
+        //delay (5);
+    }//lights LEDs
+  }
+  delay(dotLength);
+}
+void dot()
+{
+  ledOn(dotLength);
+}
+void dash()
+{
+  ledOn(3*dotLength);
+ //3 times as long 
+}
 void loop()
 {
-  String content = "";
+  dot();
+  dash();
+}
+  /*String content = "";
   char character;
   while (Serial1.available())
   {
@@ -35,21 +63,5 @@ void loop()
   
   // Morse shit goes here.
   
-  /*for (int i = 0; i < NUM_LEDS; i++)
-  {
-    if (content == "blue")
-    {
-      Serial.println("B");
-      leds[i] = CRGB::Blue;
-    }
-    else if (content == "red")
-    {
-      Serial.println("R");
-      leds[i] = CRGB::Red;
-    }
-    else
-    {
-      leds[i] = CRGB::Black;
-    }
-  }*/
-}
+  
+}*/
