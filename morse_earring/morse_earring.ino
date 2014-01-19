@@ -1,9 +1,11 @@
 #include "FastLED.h"
 
-#define NUM_LEDS 16
-#define DATA_PIN 3
+#define NUM_LEDS 8
+#define DATA_PIN1 2
+#define DATA_PIN2 3
 
-CRGB leds[NUM_LEDS];
+CRGB leds1[NUM_LEDS];
+CRGB leds2[NUM_LEDS];
 
 int dotLength = 250; 
 
@@ -11,23 +13,26 @@ void setup() {
     Serial.begin(9600);
     Serial1.begin(38400);
     
-    FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
+    FastLED.addLeds<NEOPIXEL, DATA_PIN1>(leds1, NUM_LEDS);
+    FastLED.addLeds<NEOPIXEL, DATA_PIN2>(leds2, NUM_LEDS);
 }
 
 void morse(char c);
 
 void ledOn(int length)
-{
+{//lights LEDs
   int startTime = millis();
   while (millis() - startTime < length)
     {
     for (int i = 0; i < NUM_LEDS; i++)
     {
-      leds[i] = CRGB::Blue;
+      leds1[i] = CRGB::Blue;
+      leds2[i] = CRGB::Blue;
       FastLED.show();
-      leds[i] = CRGB::Black;
-      //delay (5);
-    }//lights LEDs
+      leds1[i] = CRGB::Black;
+      leds2[i] = CRGB::Black;
+    }
+    FastLED.show();
   }
   delay(dotLength);
 }
@@ -38,9 +43,8 @@ void dot()
 }
 
 void dash()
-{
-  ledOn(3*dotLength);
- //3 times as long 
+{//3 times as long 
+  ledOn(dotLength * 3);
 }
 
 void loop()
@@ -66,7 +70,7 @@ void loop()
 }
 
 void morse(char c)
-{
+{//translate characters to morse
   switch (c)
   {
     case 'a':
@@ -207,7 +211,7 @@ void morse(char c)
       delay(dotLength * 3);
       break;
     default:
-      break;
+      delay(0);
   }
 }
 
