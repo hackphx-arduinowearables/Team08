@@ -3,10 +3,10 @@ Morse Code Earrings
 
 Created for the HackPHX Winter 2014 event.  
 
-@meznak - Electronics and code
-@pyrobrooks - Electronics and code
-@brettwarner - Code and documentation
-@gossamerlights - Design and fabrication
+* meznak - Electronics and code
+* pyrobrooks - Electronics and code
+* brettwarner - Code and documentation
+* gossamerlights - Design and fabrication
 
 What is it?
 -----------
@@ -15,7 +15,7 @@ Have you ever wanted to send a message to your friends accross a crowded room? H
 
 Welcome to Morse Code Earrings, the hip new device that takes you from boring to fabulous.
 
-Some assembly required
+Some assembly required.
 
 The Morse code earrings work by receiving an ASCII message via bluetooth low energy (BLE). Once your phone or other device is paired with the earrings, simply send an ASCII message of your choosing and watch as the earrings illuminate to send out your message to the world!
 
@@ -42,6 +42,8 @@ Hardware
 1. Connect breakout board to Xadow device
 
 2. Connect breakout board to both LEDs
+  * Attach power and ground to each earring
+  * Attach one earring's DIN wire to SCL, the other to SDA
 
 3. Connect breakout board to Xadow BLE module
 
