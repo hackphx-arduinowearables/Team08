@@ -68,6 +68,6 @@ Flare
 Notes
 -----
 
-In creating this project, we learned to use the Xadow device, and its associated modules; specifically, the BLE and breakout boards.
+In creating this project, we learned to use the Xadow device, and its associated modules; specifically, the BLE and breakout boards. See images folder for additional design details.
 
 Approximate design and build time: 7 hours
